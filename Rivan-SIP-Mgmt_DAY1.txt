@@ -212,7 +212,7 @@ voice register dn 10
 !
 voice register pool 1
  type 8851
- id mac obob.cafe.baba
+ id mac dcf7.19d8.9510
  number 1 dn 1
  number 2 dn 2
  number 3 dn 3
@@ -224,7 +224,7 @@ voice register pool 1
 !
 voice register pool 2
  type 8851
- id mac haha.face.bobo
+ id mac c4c6.03f0.1c34
  number 1 dn 6
  number 2 dn 8
  number 3 dn 9
@@ -354,3 +354,4 @@ int gi 0/1
  ip ospf network point-to-point
 
 end
+
