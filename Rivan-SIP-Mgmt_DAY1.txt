@@ -1,6 +1,6 @@
 !@@@LeafSwitchONLY
 config t
-   hostname COREbaba-~~
+   hostname COREbaba-42
    enable secret pass
    service password-encryption
    no logging console
@@ -16,22 +16,22 @@ config t
    Int Gi 0/1
      no shutdown
 	  no switchport
-	  ip add 10.~~.~~.4 255.255.255.0
+	  ip add 10.42.42.4 255.255.255.0
    Int Vlan 1
      no shutdown
-	 ip add 10.~~.1.4 255.255.255.0
+	 ip add 10.42.1.4 255.255.255.0
 	 description MGMTDATA
    Int Vlan 10
      no shutdown
-	 ip add 10.~~.10.4 255.255.255.0
+	 ip add 10.42.10.4 255.255.255.0
 	 description WIRELESS
    Int Vlan 50
      no shutdown
-	 ip add 10.~~.50.4 255.255.255.0
+	 ip add 10.42.50.4 255.255.255.0
 	 description IPCCTV
    Int Vlan 100
      no shutdown
-	 ip add 10.~~.100.4 255.255.255.0
+	 ip add 10.42.100.4 255.255.255.0
 	 description VOICEVLAN
 	!
 	ip routing
@@ -40,31 +40,31 @@ end
 !DHCP: DYNAMIC HOST CONFIGURATION PROTOCOL
 !@@@LEAF SWITCH
 config t
-ip dhcp Excluded-add 10.~~.1.1 10.~~.1.100
-ip dhcp Excluded-add 10.~~.10.1 10.~~.10.100
-ip dhcp Excluded-add 10.~~.50.1 10.~~.50.100
-ip dhcp Excluded-add 10.~~.100.1 10.~~.100.100
+ip dhcp Excluded-add 10.42.1.1 10.42.1.100
+ip dhcp Excluded-add 10.42.10.1 10.42.10.100
+ip dhcp Excluded-add 10.42.50.1 10.42.50.100
+ip dhcp Excluded-add 10.42.100.1 10.42.100.100
 ip dhcp pool MGMTDATA
-   network 10.~~.1.0 255.255.255.0
-   default-router 10.~~.1.4
+   network 10.42.1.0 255.255.255.0
+   default-router 10.42.1.4
    domain-name MGMTDATA.COM
-   dns-server 10.~~.1.10
+   dns-server 10.42.1.10
 ip dhcp pool WIFIDATA
-   network 10.~~.10.0 255.255.255.0
-   default-router 10.~~.10.4
+   network 10.42.10.0 255.255.255.0
+   default-router 10.42.10.4
    domain-name WIFIDATA.COM
-   dns-server 10.~~.1.10
+   dns-server 10.42.1.10
 ip dhcp pool IPCCTV
-   network 10.~~.50.0 255.255.255.0
-   default-router 10.~~.50.4
+   network 10.42.50.0 255.255.255.0
+   default-router 10.42.50.4
    domain-name IPCCTV.COM
-   dns-server 10.~~.1.10
+   dns-server 10.42.1.10
 ip dhcp pool VOICEVLAN
-   network 10.~~.100.0 255.255.255.0
-   default-router 10.~~.100.4
+   network 10.42.100.0 255.255.255.0
+   default-router 10.42.100.4
    domain-name VOICEVLAN.COM
-   dns-server 10.~~.1.10
-   option 150 ip 10.~~.~~.1
+   dns-server 10.42.1.10
+   option 150 ip 10.42.42.1
    END
 
 !!CREATING AND PLACING PORTS INSIDEAVLAN:
@@ -113,7 +113,7 @@ end
 
 !@@@EDGE ROUTE CONFIG
 config t
-   hostname EDGE-~~
+   hostname EDGE-42
    enable secret pass
    service password-encryption
    no logging console
@@ -128,21 +128,21 @@ config t
       exec-timeout 0 0
    Int Gi 0/0/0
      description FIBEROPTIC-TO-SWITCH
-     ip add 10.~~.~~.1 255.255.255.0
+     ip add 10.42.42.1 255.255.255.0
 	 no shutdown
    Int Gi 0/0/1
      description PLDT-ME-WAN
-	 ip add 200.0.0.~~ 255.255.255.0
+	 ip add 200.0.0.42 255.255.255.0
 	 no shutdown
    Int Loopback 0
      description VIRTUALIP-FOR-ROUTING
-	 ip add ~~.0.0.1 255.255.255.255
+	 ip add 42.0.0.1 255.255.255.255
  end
  
 !EDGE 1ST ROUTE TO MEET SIP PHONE
  conf t
   ip routing
-  ip route 10.~~.0.0 255.255.0.0 10.~~.~~.4
+  ip route 10.42.0.0 255.255.0.0 10.42.42.4
  end
  
 !CME REGISTER
@@ -163,51 +163,51 @@ sip
 voice register global
  mode cme
  no auto-register
- source-address 10.~~.~~.1 port 5060
+ source-address 10.42.42.1 port 5060
  max-dn 20
  max-pool 20
  authenticate register
  create profile
 !
 voice register dn 1
- number ~~11
- name ~~11
+ number 4211
+ name 4211
  allow watch
 voice register dn 2
- number ~~22
- name ~~22
+ number 4222
+ name 4222
  allow watch
 voice register dn 3
- number ~~33
- name ~~33
+ number 4233
+ name 4233
  allow watch
 voice register dn 4
- number ~~44
- name ~~44
+ number 4244
+ name 4244
  allow watch
 voice register dn 5
- number ~~55
- name ~~55
+ number 4255
+ name 4255
  allow watch
 voice register dn 6
- number ~~66
- name ~~66
+ number 4266
+ name 4266
  allow watch
 voice register dn 7
- number ~~77
- name ~~77
+ number 4277
+ name 4277
  allow watch
 voice register dn 8
- number ~~88
- name ~~88
+ number 4288
+ name 4288
  allow watch
 voice register dn 9
- number ~~99
- name ~~99
+ number 4299
+ name 4299
  allow watch
 voice register dn 10
- number ~~67
- name ~~67
+ number 4267
+ name 4267
  allow watch
 !
 voice register pool 1
@@ -219,7 +219,7 @@ voice register pool 1
  number 4 dn 4
  number 5 dn 5
  dtmf-relay sip-notify
- username ~~Passa password ~~Passa
+ username 42Passa password 42Passa
  codec g711ulaw
 !
 voice register pool 2
@@ -231,7 +231,7 @@ voice register pool 2
  number 4 dn 7
  number 5 dn 10
  dtmf-relay sip-notify
- username ~~Passb password ~~Passb
+ username 42Passb password 42Passb
  codec g711ulaw
 end
 
@@ -337,10 +337,10 @@ conf t
 !@EDGE:
 config t
 router ospf 1
-router-id ~~.0.0.1
+router-id 42.0.0.1
 network 200.0.0.0  0.0.0.255 area 0
-network 10.~~.~~.0  0.0.0.255 area 0
-network ~~.0.0.1  0.0.0.0 area 0
+network 10.42.42.0  0.0.0.255 area 0
+network 42.0.0.1  0.0.0.0 area 0
 Interface gi 0/0/0
  ip ospf network point-to-point
 end
@@ -348,8 +348,9 @@ end
 !@CoreBABA:
 config t
 router ospf 1
-router-id 10.~~.~~.4
-network 10.~~.0.0  0.0.255.255 area 0
+router-id 10.42.42.4
+network 10.42.0.0  0.0.255.255 area 0
 int gi 0/1
  ip ospf network point-to-point
+
 end
